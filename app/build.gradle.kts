@@ -42,57 +42,40 @@ android {
 }
 
 dependencies {
-    implementation("com.google.dagger:hilt-android:2.55")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     kapt("androidx.hilt:hilt-compiler:1.2.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
-    //implementation("com.google.dagger:hilt-android-gradle-plugin:$hiltVers")
-    //ksp("com.google.dagger:hilt-compiler:$hiltVers")
-        //ksp("androidx.hilt:hilt-compiler:${hiltVers}") // 1.0.0 in course
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0") //
-    implementation("androidx.hilt:hilt-compiler:1.2.0")
-
-
-    //material icons
+    // Material Icons
     implementation("androidx.compose.material:material-icons-extended:1.7.6")
 
-    // coroutines
-    implementation(libs.kotlinx.coroutines.android.v1101)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.jetbrains.kotlinx.coroutines.android)
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.1")
 
+    // Lifecycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
-    val coroutinesPlayServicesVersion = "1.6.4" // Or the latest version
-    implementation(libs.kotlinx.coroutines.play.services)
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.0.0")
 
+    // Retrofit & Gson
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    //coroutine lifecycle scopes
-    implementation(libs.androidx.lifecycle.viewmodel.ktx) //2.4.0 in course
-    // lifecycle-runtime-ktx already in auto generated dependencies,
-    // otherwise it would be here
+    // OkHttp
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
 
-
-    //coil
-    implementation(libs.coil.compose)
-
-    //retrofit & json converter
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-
-    //OkHttp
-    implementation(libs.okhttp) // 5.0.0-alpha.2 in course
-
-    //Room
-    val roomVers = "2.6.1"
-    implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    kapt(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
-
-
-
-
-
+    // Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 
 
 
@@ -113,4 +96,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains:annotations:23.0.0")
+        force("com.intellij:annotations:23.0.0")
+        // Exclude older versions
+        exclude(group = "com.intellij", module = "annotations")
+    }
 }
