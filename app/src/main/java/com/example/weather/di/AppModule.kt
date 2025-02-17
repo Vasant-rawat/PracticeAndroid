@@ -13,9 +13,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-
     @Provides
     @Singleton
+//calls a retrofit builder (Which returns RetrofitObject) a weather api
+
+
+/*this will create a class using  interface using hilt in java for dependency injection */
+
     fun provideOpenWeatherApi():WeatherApi {
         return Retrofit.Builder()
             .baseUrl(Constants.baseUrl)

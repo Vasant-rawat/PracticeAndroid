@@ -14,5 +14,4 @@ interface WeatherApi {
         @Query("units")units: String = "imperial",
         @Query("appid")apiKey: String=API_KEY
     ): Weather
-
 }
